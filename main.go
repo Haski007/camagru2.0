@@ -3,12 +3,15 @@ package main
 import (
 	"./config"
 	"./logger"
-
+	"./database"
+	"./user"
+	
+	
 	"fmt"
 	"log"
 	"time"
 	"net/http"
-
+	
 )
 
 func main() {
@@ -21,12 +24,17 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	http.HandleFunc("/", logger.JSON(startHandler))
+	database.InitDB()
+	http.HandleFunc("/", logger.PreLogs(startHandler))
+	http.HandleFunc("/user", logger.PreLogs(user.Handler))
+	http.HandleFunc("/registration", logger.PreLogs(user.Registration))
+
+
 
 	fmt.Println("Listerning on port", config.Port)
 	log.Fatal(s.ListenAndServe())
 }
 
 func startHandler(w http.ResponseWriter, r *http.Request) {
-
+	
 }

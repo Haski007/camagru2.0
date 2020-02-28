@@ -1,0 +1,51 @@
+{{ define "registration"}}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration on Camagru</title>
+	<style>
+		.inputs {
+			background-color: #87CEEB;
+			border-color: #87CEEB;
+			border-radius: 10px;
+			width: 500px;
+			height: 50px;
+			font-size: large;
+			font-family:Tahoma, Geneva, sans-serif;
+			text-align: center;
+		}
+		.submit-button {
+			background-color: #FF4500;
+			border-color: #FF4500;
+			margin-top	: 1px;
+			border-radius: 10px;
+			width: 506px;
+			height: 50px;
+			font-size: large;
+			font-family:Tahoma, Geneva, sans-serif;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div style="text-align: center;">
+		<h1>Registration</h1>
+	</div>
+	<form style="text-align: center;" method="POST" action="/user">
+		<input class="inputs" type="text" name="email" placeholder="Email">
+	</br>
+		<input class="inputs" type="text" name="user_name" placeholder="User Name">
+	</br>
+		<input class="inputs" type="password" name="password" placeholder="Password">
+	</br>
+		<input class="inputs" type="password" placeholder="Repeat Password">
+	</br>
+		<input class="inputs" type="text" name="first_name" placeholder="First Name">
+	</br>
+		<input class="inputs" type="text" name="last_name" placeholder="Last Name">
+	</br>
+		<button class="submit-button" type="submit">Submit</button>
+	</form>
+</body>
+</html>
+{{ end }}

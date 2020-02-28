@@ -1,0 +1,31 @@
+{{ define "registration"}}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BitMedia</title>
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+		<div class="buttons-main">
+			<a href="http://localhost:8080/user/create"><button class="button-class">Create User</button></a>
+		</div>
+		<div class="buttons-main">
+			<a href="http://localhost:8080/game/create"><button class="button-class">Create Game</button></a>
+		</div>
+
+	<div id="select-getdata" class="buttons-main">
+		<form action="/get-data" method="GET">
+			<select name="table">
+				<option name="table" value="users">Get users</option>
+				<option name="table" value="users">Get games</option>
+			</select>
+			<div>
+				<input class="input-class" type="checkbox" name="sorted" value="date" checked>Sort by date
+			</div>
+			<br>
+				<button class="button-class" id="submit-select" type="submit">Get data</button>
+		</form>
+	</div>
+</body>
+</html>
+{{ end }}
