@@ -13,7 +13,7 @@ var HostName = "localhost"
 
 
 // DataBaseHost, hostname on witch mongoDB is hosting.
-var DataBaseHost = "192.168.99.103"
+var DataBaseHost = "192.168.99.100"
 
 // DataBasePort, port on witch mongoDB is hosting.
 var DataBasePort = ":27017"

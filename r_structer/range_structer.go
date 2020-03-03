@@ -5,8 +5,10 @@ import (
 	"reflect"
 )
 
-var templateFuncs = template.FuncMap{"rangeStruct": RangeStructer}
+// TemplateFuncs ...
+var TemplateFuncs = template.FuncMap{"rangeStruct": RangeStructer}
 
+// RangeStructer ...
 func RangeStructer(args ...interface{}) []interface{} {
     if len(args) == 0 {
         return nil

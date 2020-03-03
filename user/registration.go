@@ -2,8 +2,8 @@ package user
 
 import (
 	"fmt"
-	"log"
 	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -15,11 +15,9 @@ var userID = 0
 func handleAddUser(w http.ResponseWriter, r *http.Request) {
 	var user User
 
-	user.ID = strconv.Itoa(userID)
-	userID++
-	fmt.Printf("id = %s\n", strconv.Itoa(userID))
+	user.ID = strconv.Itoa(getLastID())
 	user.Email = r.FormValue("email")
-	user.UserName = r.FormValue("user_name")
+	user.Login = r.FormValue("login")
 	user.Password = r.FormValue("password")
 	user.Fname = r.FormValue("first_name")
 	user.Lname = r.FormValue("last_name")
@@ -32,7 +30,7 @@ func handleAddUser(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Registration, adding a new one user to the mongoDB.
+// Registration draw registration page
 func Registration(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("user/registration.html")
 	if err != nil {
@@ -41,11 +39,31 @@ func Registration(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	err = t.ExecuteTemplate(w, "registration", nil)
 	if err != nil {
 		log.Println(err)
 		fmt.Fprintln(w, err.Error())
 		return
 	}
+}
+
+func getLastID() int {
+	var foundUser User
+
+	summ, err := database.UsersCollection.Count()
+	if err != nil {
+		log.Fatal(err)
+	} else if summ == 0 {
+		return 0
+	}
+
+	err = database.UsersCollection.Find(nil).Skip(summ - 1).One(&foundUser)
+	if err != nil {
+		log.Println(err)
+	}
+	res, err := strconv.Atoi(foundUser.ID)
+	if err != nil {
+		log.Println(err)
+	}
+	return res + 1
 }

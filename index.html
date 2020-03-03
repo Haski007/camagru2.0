@@ -1,30 +1,28 @@
-{{ define "registration"}}
+{{ define "main-page"}}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>BitMedia</title>
+	<title>Camagru</title>
 	<link rel="stylesheet" href="assets/css/main.css">
+	<style>
+		#reg-button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: indigo;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			width: 100%;
+			height: 500px;
+			font-size: 16px;
+			text-decoration: none;
+		}
+	</style>
 </head>
 <body>
-		<div class="buttons-main">
-			<a href="http://localhost:8080/user/create"><button class="button-class">Create User</button></a>
-		</div>
-		<div class="buttons-main">
-			<a href="http://localhost:8080/game/create"><button class="button-class">Create Game</button></a>
-		</div>
-
-	<div id="select-getdata" class="buttons-main">
-		<form action="/get-data" method="GET">
-			<select name="table">
-				<option name="table" value="users">Get users</option>
-				<option name="table" value="users">Get games</option>
-			</select>
-			<div>
-				<input class="input-class" type="checkbox" name="sorted" value="date" checked>Sort by date
-			</div>
-			<br>
-				<button class="button-class" id="submit-select" type="submit">Get data</button>
-		</form>
+	<div>
+		<a id="reg-button" href="/registration">Registration</a>
 	</div>
 </body>
 </html>

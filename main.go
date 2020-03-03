@@ -1,22 +1,22 @@
 package main
 
 import (
+	"html/template"
+
 	"./config"
-	"./logger"
 	"./database"
+	"./logger"
 	"./user"
-	
-	
+
 	"fmt"
 	"log"
-	"time"
 	"net/http"
-	
+	"time"
 )
 
 func main() {
 	s := http.Server{
-		Addr:           config.HostName + config.Port,
+		Addr:          	config.Port,
 		Handler:        nil,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
@@ -36,5 +36,18 @@ func main() {
 }
 
 func startHandler(w http.ResponseWriter, r *http.Request) {
-	
+	t, err := template.ParseFiles("index.html")
+	if err != nil {
+		log.Println(err)
+		fmt.Fprintln(w, err.Error())
+		return
+	}
+
+
+	err = t.ExecuteTemplate(w, "main-page", nil)
+	if err != nil {
+		log.Println(err)
+		fmt.Fprintln(w, err.Error())
+		return
+	}
 }
