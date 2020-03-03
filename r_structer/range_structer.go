@@ -1,4 +1,4 @@
-package main
+package r_structer
 
 import (
 	"html/template"
